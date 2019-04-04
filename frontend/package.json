@@ -1,0 +1,36 @@
+{
+  "name": "frontend",
+  "version": "1.0.0",
+  "description": "Frontend for displaying analytics results",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "dev": "sh dev.sh",
+    "build": "NODE_ENV=production npm run build:global && NODE_ENV=production npm run build:sites",
+    "build:watch": "find pages -type f | entr -r npm run build:dev",
+    "build:dev": "npm run build:global && npm run build:sites",
+    "build:elm": "elm make --optimize",
+    "build:global": "node-sass --include-path node_modules pages/global.scss dist/static/css/global.css",
+    "build:sites": "npm run build:index && npm run build:generate-tracking-script",
+    "build:index": "node compiler/index.js index",
+    "build:generate-tracking-script": "node compiler/index.js generate-tracking-script"
+  },
+  "author": "",
+  "license": "AGPL3",
+  "devDependencies": {
+    "@babel/cli": "7.2.3",
+    "@babel/core": "7.3.4",
+    "@babel/preset-env": "7.3.4",
+    "babel-loader": "8.0.5",
+    "elm": "0.19.0-bugfix6",
+    "elm-webpack-loader": "5.0.0",
+    "eslint": "5.15.3",
+    "handlebars": "4.1.1",
+    "jest": "24.1.0",
+    "node-sass": "4.11.0",
+    "prismjs": "1.16.0",
+    "vanilla-framework": "1.8.1",
+    "webpack": "4.29.6"
+  },
+  "dependencies": {}
+}

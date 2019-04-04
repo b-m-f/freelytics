@@ -1,0 +1,35 @@
+version: "3"
+
+networks:
+  analyze_integration_test:
+    external: false
+
+services:
+  analyze_integration_test_api:
+    build:
+      context: .
+      dockerfile: ./TEST_DOCKERFILE
+    environment:
+      - PGUSER=test
+      - PGPASSWORD=test
+      - PGHOST=analyze_integration_test_db
+      - PGPORT=5432
+      - PGDATABASE=test
+      - PGSSLMODE=disable
+      - USER
+      - ALLOWED_URL="*"
+    depends_on:
+      - analyze_integration_test_db
+    networks:
+      - analyze_integration_test
+    volumes:
+      - "../../integration_tests:/go/src/api/integration_tests"
+      - "../../main.go:/go/src/api/integration_tests/main.go"
+  analyze_integration_test_db:
+    image: postgres
+    environment:
+      POSTGRES_DB: test
+      POSTGRES_USER: test
+      POSTGRES_PASSWORD: test
+    networks:
+      - analyze_integration_test

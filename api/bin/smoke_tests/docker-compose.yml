@@ -1,0 +1,47 @@
+version: "3"
+
+networks:
+  analyze_smoke_test:
+    external: false
+
+services:
+  analyze_smoke_tester:
+    build:
+      context: .
+      dockerfile: ./TEST_DOCKERFILE
+    depends_on:
+      - analyze_smoke_test_db
+    environment:
+      - PORT=10920
+      - HOST=analyze_smoke_test_api
+    networks:
+      - analyze_smoke_test
+    volumes:
+      - "../../smoke_tests/curls.sh:/curls.sh"
+  analyze_smoke_test_api:
+    build:
+      context: .
+      dockerfile: ./SERVER_DOCKERFILE
+    environment:
+      - PGUSER=test
+      - PGPASSWORD=test
+      - PGHOST=analyze_smoke_test_db
+      - PGPORT=5432
+      - PGDATABASE=test
+      - PGSSLMODE=disable
+      - USER
+      - ALLOWED_URL="*"
+    depends_on:
+      - analyze_smoke_test_db
+    networks:
+      - analyze_smoke_test
+    volumes:
+      - "../../main.go:/go/src/api/main.go"
+  analyze_smoke_test_db:
+    image: postgres
+    environment:
+      POSTGRES_DB: test
+      POSTGRES_USER: test
+      POSTGRES_PASSWORD: test
+    networks:
+      - analyze_smoke_test

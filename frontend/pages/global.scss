@@ -1,0 +1,89 @@
+@import "vanilla-framework/scss/settings";
+
+// include all the necessary Vanilla components and settings
+@import "vanilla-framework/scss/base_blockquotes";
+@import "vanilla-framework/scss/base_box-sizing";
+@import "vanilla-framework/scss/base_button";
+@import "vanilla-framework/scss/base_code";
+@import "vanilla-framework/scss/base_hr";
+@import "vanilla-framework/scss/base_links";
+@import "vanilla-framework/scss/base_lists";
+@import "vanilla-framework/scss/base_media";
+@import "vanilla-framework/scss/base_placeholders";
+@import "vanilla-framework/scss/base_reset";
+@import "vanilla-framework/scss/base_tables";
+@import "vanilla-framework/scss/base_typography";
+@import "vanilla-framework/scss/base_vertical-spacing";
+@import "vanilla-framework/scss/patterns_card";
+
+@include vf-b-reset;
+@include vf-b-blockquotes;
+@include vf-b-box-sizing;
+@include vf-b-button;
+@include vf-b-code;
+@include vf-b-hr;
+@include vf-b-links;
+@include vf-b-lists;
+@include vf-b-media;
+@include vf-b-placeholders;
+@include vf-b-tables;
+@include vf-b-typography;
+@include vf-p-card-default;
+@include vf-p-card-highlighted;
+@include vf-p-card-specific-content;
+
+
+body {
+  margin: 0;
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+    grid-template-rows: [row1-start] 1fr [row1-end row2-start] 6fr [row2-end row3-start] 1fr [row3-end];
+    grid-template-columns: 1.5fr 8fr;
+    grid-template-areas: 
+      "header main" 
+      "header main" 
+      "footer main";
+}
+
+header { 
+  grid-area: header;
+  padding-left: 1rem;
+  padding-right: 1rem;
+
+  nav {
+    padding-top: 1rem;
+
+    ul {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      list-style-type: none;
+
+      li {
+        padding-bottom: 1rem;
+
+        &:last-child {
+          padding: 0;
+        }
+      }
+    }
+  }
+}
+
+main {
+  border-left: solid black 1px;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  grid-area: main;
+  overflow-y: scroll;
+}
+
+footer {
+  grid-area: footer;
+  text-align: center;
+  padding-left: .2rem;
+  padding-right: .2rem;
+}

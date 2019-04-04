@@ -1,0 +1,27 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>{{title}}</title>
+    <link rel="stylesheet" href="static/css/global.css">
+    {{#each styles}}
+      <link rel="stylesheet" href="static/css/{{this}}">
+    {{/each}}
+  </head>
+<body>
+  <header>
+    <nav>
+    <ul>
+      <li>
+        <a href="/">
+          Dashboard
+        </a>
+      </li>
+      <li>
+        <a href="/generate-tracking-script">
+          Generate Tracking Script
+        </a>
+      </li>
+      </ul>
+    </nav>
+  </header>
+  <main>
