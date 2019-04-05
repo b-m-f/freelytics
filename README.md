@@ -7,6 +7,8 @@ The idea behind the architecture is simple.
 Provide an API to store some information that comes from website.
 Store this data inside a Database and then display it a later point via a Dashboard.
 
+![Architecture diagram](docs/assets/architecture.svg) 
+
 ## Why write this?
 I host a blog myself and wanted to get some insights about how people are using it.
 All options that were available to me at the time required complex setup for their users, cost money or used techniques that were not respectful of data privacy and therefore our internet.
