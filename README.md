@@ -1,25 +1,50 @@
-# Galyzer
-The idea is simple.
-Provide an API to store some information that gets send from Frontends, and to display aggregates to others.
+# Freelytics
 
-What evolves out of this is a simple anaylytics platform that can have multiple frontends.
+**Freelytics provides free and privacy respecting analytics for your blog or small website, for FREE!**
+
+The idea behind the architecture is simple.
+
+Provide an API to store some information that comes from website.
+Store this data inside a Database and then display it a later point via a Dashboard.
 
 ## Why write this?
-Other projects seemed abandoned or badly documented or they are using techniques that are bad for privacy.
-Since I host a blog and would like to gather some data, to see what people are interested in without sacrificing thei privacy or performance,
-I decided to write a quick implementation myself.
+I host a blog myself and wanted to get some insights about how people are using it.
+All options that were available to me at the time required complex setup for their users, cost money or used techniques that were not respectful of data privacy and therefore our internet.
+
+Its a passion project, and hopefully one that you can enjoy as well.
 
 
 ## How to use this?
-Just deploy it and start sending and consuming data to it.
+Just head over to [https://freelytics.com](https://freelytics.com) and follow these steps:
 
-## Can I see a demo?
-Since most people just want a simple and cheap tool that works out of the box I am hosting a Frontend for free. If you would like please consider some donations though, so that I can cover the server costs easily and provide an ever better alternative to the googles of our world.
+1. Create a tracking script for your website at [https://freelytics.net/generate-tracking-script](https://freelytics.net/generate-tracking-script).
+2. Paste this into your website. Wordpress and Ghost provide easy ways to do this. Simply google `insert script into wordpress`/`insert script into ghost cms` respectively.
+3. Now head back to [https://freelytics.com](https://freelytics.com) and enter the URL oy your website and press `Get Data`. If you do not see and data just yet, simply visit your own blog and then try again.
+
+## Can I host it myself?
+Sure! 
+
+The docker images are hosted here:
+- API: bmff/analyze-api:latest
+- Frontend: bmff/analyze-frontend:latest
+
+TODO:
+Write documentation about how to deploy the different parts, and all parts together with `docker-compose`.
+
+
+## Who owns the data?
+The data is stored in a Postgres Database that I am hosting for now. I will provide dumps of the data though. 
+Just contact me via my [blog](https://maximilianehlers.com) and I will send you only your data, or all of it.
+
+None of it is identifying anyone! And I will do all I can to keep it this way.
+The idea is to be 100% transparent and provide a service that we can all benefit from.
+
+In the long term I would like to make even the database public with a special user account, so that anyone can use the data for research or visualization, so that they can share insights or just learn something.
 
 ## Contributing
-I have choosen golang as it comes with strict defaults and everyone should be able to jump on the codebase.
-The only requirement is that the code is completely tested. I will be happy to provide feedback if you are just starting out.
-In general please test as follows:
-  - Interacting of functions or modules should be tested by actually using them. What matters is that they do what is expected, not every single one of their functions.
-  - Functions should be unit tested for their outcome if they are complex. This means f.e. that if you have any `if` in the function, it should have a unit test.
+
+All contributions are welcome. I have created some issues that I think need work.
+If you have other ideas feel free to create an issure to discuss them or heck, if you know how to implement them why not go ahead and then create a PullRequest. 
+
+Any level of expertise is welcome, and even if you dont have any but want to help out and need some mentorship Im happy to help out.
 
