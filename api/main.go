@@ -41,8 +41,8 @@ func _ConnectToDB() *sql.DB {
 	return db
 }
 func _InitDB(db *sql.DB) {
-	_, err := db.Query(`CREATE SCHEMA IF NOT EXISTS analytics`)
-	_, err = db.Query(`CREATE TABLE IF NOT EXISTS routes (
+	_, err := db.Exec(`CREATE SCHEMA IF NOT EXISTS analytics`)
+	_, err = db.Exec(`CREATE TABLE IF NOT EXISTS routes (
 	    url text PRIMARY KEY,
 		  root varchar(40),
 			times_visited int,
@@ -61,7 +61,7 @@ type _Metric struct {
 }
 
 func _SaveMetric(metric _Metric, db *sql.DB) error {
-	_, err := db.Query(`INSERT INTO routes(url, root, times_visited) VALUES($1, $2, $3) ON CONFLICT (url) DO UPDATE SET times_visited=routes.times_visited+1;`, metric.URL, metric.Root, 1)
+	_, err := db.Exec(`INSERT INTO routes(url, root, times_visited) VALUES($1, $2, $3) ON CONFLICT (url) DO UPDATE SET times_visited=routes.times_visited+1;`, metric.URL, metric.Root, 1)
 	return err
 }
 
@@ -118,6 +118,7 @@ func _GetMetricsForSite(site string, db *sql.DB) ([]*_Metric, error) {
 		}
 		metrics = append(metrics, metric)
 	}
+	rows.Close()
 
 	return metrics, nil
 }
