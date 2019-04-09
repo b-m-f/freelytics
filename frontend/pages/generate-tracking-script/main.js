@@ -5,9 +5,12 @@ const input = document.getElementById("customUrlInput");
 const button = document.getElementById("copyButton");
 const code = document.getElementById("output");
 
-code.innerHTML = `
-${sendData}("${input.value}")
-`;
+
+function getTrackingScriptForDomain(domain){
+    return `(${sendData}("${domain}"))`;
+}
+
+code.innerHTML = getTrackingScriptForDomain(input.value);
 
 Prism.highlightElement(code, false, () => {});
 
@@ -19,9 +22,7 @@ input.addEventListener("input", (e) => {
         window.setTimeout(() => {
             const domain =  e.target.value;
             executingInput = false;
-            code.innerHTML = `
-${sendData}("${domain}")
-`;
+            code.innerHTML = getTrackingScriptForDomain(domain);
             Prism.highlightElement(code, false, () => {});
         }, 600);
     }
