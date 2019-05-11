@@ -7,6 +7,15 @@ defmodule Freelytics.Router do
   plug(:match)
   plug(:dispatch)
 
+  options "/get/:root" do
+    headers = [
+      {"Access-Control-Allow-Origin", "https://freelytics.net"},
+      {"Access-Control-Allow-Methods", "OPTIONS"}
+    ]
+
+    conn.merge_resp_headers(conn, headers)
+  end
+
   get "/get/:root" do
     IO.inspect(root)
     ## if root has http:// https:// it should be removed
@@ -19,6 +28,16 @@ defmodule Freelytics.Router do
     entries = Freelytics.Repo.all(query)
 
     send_resp(conn, 200, Jason.encode!(entries))
+  end
+
+  options "/save" do
+    headers = [
+      {"Access-Control-Allow-Origin", "*"},
+      {"Access-Control-Allow-Methods", "OPTIONS"},
+      {"Access-Control-Allow-Headers", "Content-Type"}
+    ]
+
+    conn.merge_resp_headers(conn, headers)
   end
 
   post "/save" do
@@ -49,10 +68,19 @@ defmodule Freelytics.Router do
     case result do
       {:ok, struct} ->
         Logger.info("Updated #{inspect(struct)}")
+
+        headers = [
+          {"Access-Control-Allow-Origin", "*"},
+          {"Access-Control-Allow-Methods", "POST"},
+          {"Access-Control-Allow-Headers", "Content-Type"}
+        ]
+
+        conn.merge_resp_headers(conn, headers)
         send_resp(conn, 200, "")
 
       {:error, changeset} ->
         Logger.info("Update failed for #{inspect(changeset)}")
+        send_resp(conn, 400, "Failed.")
     end
   end
 
