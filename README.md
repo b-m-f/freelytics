@@ -17,11 +17,11 @@ Its a passion project, and hopefully one that you can enjoy as well.
 
 
 ## How to use this?
-Just head over to [https://freelytics.com](https://freelytics.com) and follow these steps:
+Just head over to [https://freelytics.net](https://freelytics.net) and follow these steps:
 
 1. Create a tracking script for your website at [https://freelytics.net/generate-tracking-script](https://freelytics.net/generate-tracking-script).
 2. Paste this into your website. Wordpress and Ghost provide easy ways to do this. Simply google `insert script into wordpress`/`insert script into ghost cms` respectively.
-3. Now head back to [https://freelytics.com](https://freelytics.com) and enter the URL oy your website and press `Get Data`. If you do not see and data just yet, simply visit your own blog and then try again.
+3. Now head back to [https://freelytics.net](https://freelytics.net) and enter the URL oy your website and press `Get Data`. If you do not see and data just yet, simply visit your own blog and then try again.
 
 ## Can I host it myself?
 Sure! 
