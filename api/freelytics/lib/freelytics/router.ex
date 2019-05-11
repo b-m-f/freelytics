@@ -1,13 +1,24 @@
 defmodule Freelytics.Router do
   use Plug.Router
   require Logger
+  require Ecto.Query
 
   plug(Plug.Parsers, parsers: [:json], json_decoder: Jason)
   plug(:match)
   plug(:dispatch)
 
-  get "/get" do
-    send_resp(conn, 200, "world")
+  get "/get/:root" do
+    IO.inspect(root)
+    ## if root has http:// https:// it should be removed
+    query =
+      Ecto.Query.from(a in Freelytics.Analytics,
+        where: a.root == ^root,
+        select: %{times_visited: a.times_visited, url: a.url}
+      )
+
+    entries = Freelytics.Repo.all(query)
+
+    send_resp(conn, 200, Jason.encode!(entries))
   end
 
   post "/save" do
