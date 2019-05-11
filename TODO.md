@@ -1,6 +1,7 @@
 # TODO
 
 ## api
+Move current functionality to Elixir
 
 ## frontend
 - parse markdown into page middle

@@ -1,39 +1,43 @@
-############################
-# STEP 1 build executable binary
-############################
-FROM golang:alpine AS builder
 
+ckerfile
+FROM elixir:1.8-alpine as build
 
-# Install dependencies
-RUN apk update && apk add --no-cache ca-certificates git tzdata gcc
+# install build dependencies
+RUN apk add --update git
 
-# Create appuser.
-RUN adduser -D -g '' appuser
+# prepare build dir
+RUN mkdir /app
+WORKDIR /app
 
-WORKDIR /go
+# install hex + rebar
+RUN mix local.hex --force && \
+    mix local.rebar --force
+
+# set build ENV
+ENV MIX_ENV=prod
+
+# install mix dependencies
+COPY mix.exs mix.lock ./
+COPY config ./
+COPY deps ./
+RUN mix deps.compile
+
+# build release
 COPY . .
+RUN mix release --no-tar --verbose
 
-# Fetch dependencies.
+# prepare release image
+FROM alpine:3.6
+RUN apk add --update bash openssl
 
-RUN go get -d -v
+RUN mkdir /app && chown -R nobody: /app
+WORKDIR /app
+USER nobody
 
-# Build the binary.
-RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -ldflags="-w -s" -o /go/bin/api
+COPY --from=build /app/_build/prod/rel/myapp ./
 
-############################
-# STEP 2 build a small image
-############################
-FROM scratch
+ENV REPLACE_OS_VARS=true
+ENV HTTP_PORT=4000 BEAM_PORT=14000 ERL_EPMD_PORT=24000
+EXPOSE $HTTP_PORT $BEAM_PORT $ERL_EPMD_PORT
 
-
-WORKDIR /go
-
-COPY --from=builder /etc/passwd /etc/passwd
-COPY --from=builder /go/bin/api /go/api
-COPY --from=builder /usr/share/zoneinfo /usr/share/zoneinfo
- 
-USER appuser
-
-EXPOSE 10920
-
-ENTRYPOINT ["/go/api"]
+ENTRYPOINT ["/app/bin/myapp"]
