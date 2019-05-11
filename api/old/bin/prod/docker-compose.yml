@@ -1,0 +1,32 @@
+version: "3"
+
+networks:
+  analyze:
+    external: false
+
+services:
+  analyze_api:
+    build:
+      context: ../../
+    environment:
+      - POSTGRES_URL=postgres://test:test@analyze_db:5432/test?sslmode=disable
+      - ALLOWED_URL=http://localhost:8000
+    ports:
+      - "8080:10920"
+    depends_on:
+      - analyze_db
+    networks:
+      - analyze
+    volumes:
+      - "../..:/go/src/api"
+    container_name: analyze
+    restart: always
+  analyze_db:
+    image: postgres
+    environment:
+      POSTGRES_DB: test
+      POSTGRES_USER: test
+      POSTGRES_PASSWORD: test
+    networks:
+      - analyze
+    container_name: analyze_db

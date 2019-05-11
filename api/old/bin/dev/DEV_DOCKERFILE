@@ -1,0 +1,19 @@
+FROM golang
+
+ARG USER 
+ENV USER=$USER
+
+
+RUN apt-get update && apt-get install entr -yy
+RUN useradd -ms /bin/bash $USER
+
+USER $USER
+
+RUN go get github.com/pilu/fresh
+
+EXPOSE 8080
+
+ADD start_go_after_mount.sh .
+
+
+CMD ./start_go_after_mount.sh

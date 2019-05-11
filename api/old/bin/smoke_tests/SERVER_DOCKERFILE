@@ -1,0 +1,6 @@
+FROM golang
+
+ADD start_go_after_mount.sh .
+
+CMD ./start_go_after_mount.sh
+

@@ -1,0 +1,7 @@
+FROM golang
+
+RUN apt-get update && apt-get install entr postgresql-client -yy
+
+ADD test_go_after_mount.sh .
+
+CMD ./test_go_after_mount.sh
