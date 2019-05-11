@@ -9,7 +9,7 @@ defmodule Freelytics.Router do
 
   options "/get/:root" do
     headers = [
-      {"Access-Control-Allow-Origin", "https://freelytics.net"},
+      {"Access-Control-Allow-Origin", System.get_env("ALLOWED_URL")},
       {"Access-Control-Allow-Methods", "OPTIONS"}
     ]
 
@@ -17,7 +17,6 @@ defmodule Freelytics.Router do
   end
 
   get "/get/:root" do
-    IO.inspect(root)
     ## if root has http:// https:// it should be removed
     query =
       Ecto.Query.from(a in Freelytics.Analytics,
@@ -27,6 +26,12 @@ defmodule Freelytics.Router do
 
     entries = Freelytics.Repo.all(query)
 
+    headers = [
+      {"Access-Control-Allow-Origin", System.get_env("ALLOWED_URL")},
+      {"Access-Control-Allow-Methods", "OPTIONS"}
+    ]
+
+    conn.merge_resp_headers(conn, headers)
     send_resp(conn, 200, Jason.encode!(entries))
   end
 

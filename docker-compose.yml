@@ -8,8 +8,8 @@ services:
   analyze_api:
     image: bmff/analyze-api
     environment:
-      - POSTGRES_URL=postgres://test:test@analyze_db:5432/test?sslmode=disable
-      - ALLOWED_URL=https://maximilianehlers.com/analyze
+      - POSTGRES_URL=ecto://test:test@analyze_db:5432/test?sslmode=disable
+      - ALLOWED_URL=https://freelytics.net
     ports:
       - "8080:10920"
     depends_on:

@@ -1,21 +1,21 @@
-# Api
+# Freelytics
 
 **TODO: Add description**
 
 ## Installation
 
 If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `api` to your list of dependencies in `mix.exs`:
+by adding `freelytics` to your list of dependencies in `mix.exs`:
 
 ```elixir
 def deps do
   [
-    {:api, "~> 0.1.0"}
+    {:freelytics, "~> 0.1.0"}
   ]
 end
 ```
 
 Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
 and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/api](https://hexdocs.pm/api).
+be found at [https://hexdocs.pm/freelytics](https://hexdocs.pm/freelytics).
 

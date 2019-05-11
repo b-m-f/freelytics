@@ -11,7 +11,7 @@ RUN apk update && apk add --no-cache ca-certificates tzdata gcc
 # Create user to run the app
 RUN adduser -D -g '' nginx
 
-ARG apiurl
+arg apiurl
 
 ENV API_URL $apiurl
 

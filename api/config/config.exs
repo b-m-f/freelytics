@@ -32,8 +32,4 @@ use Mix.Config
 config :freelytics, ecto_repos: [Freelytics.Repo]
 
 config :freelytics, Freelytics.Repo,
-  database: "freelytics",
-  username: "test",
-  password: "hello",
-  hostname: "localhost",
-  port: "5432"
+	url: System.get_env("POSTGRES_URL")
