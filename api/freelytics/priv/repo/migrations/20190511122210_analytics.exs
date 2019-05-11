@@ -10,5 +10,7 @@ defmodule Freelytics.Repo.Migrations.Analytics do
 
       timestamps()
     end
+
+    create(unique_index(:analytics, [:url]))
   end
 end
