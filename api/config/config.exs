@@ -30,6 +30,3 @@ use Mix.Config
 #     import_config "#{Mix.env()}.exs"
 
 config :freelytics, ecto_repos: [Freelytics.Repo]
-
-config :freelytics, Freelytics.Repo,
-	url: System.get_env("POSTGRES_URL")
