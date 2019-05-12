@@ -14,6 +14,7 @@ defmodule Freelytics.Router do
     ]
 
     conn = Plug.Conn.merge_resp_headers(conn, headers)
+    send_resp(conn, 200, "")
   end
 
   get "/get/:root" do
@@ -25,8 +26,6 @@ defmodule Freelytics.Router do
       )
 
     entries = Freelytics.Repo.all(query)
-
-    IO.inspect(System.get_env("ALLOWED_URL"))
 
     headers = [
       {"Access-Control-Allow-Origin", System.get_env("ALLOWED_URL")},
@@ -46,6 +45,7 @@ defmodule Freelytics.Router do
     ]
 
     conn = Plug.Conn.merge_resp_headers(conn, headers)
+    send_resp(conn, 200, "")
   end
 
   post "/save" do
