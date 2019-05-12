@@ -1,6 +1,7 @@
 # Freelytics
 
-**TODO: Add description**
+This is the API layer for freelytics. It is written with [elixir](https://elixir-lang.org), levering [ecto](https://hexdocs.pm/ecto/Ecto.html) and [plug](https://hexdocs.pm/plug/).
+
 
 ## Running
 Run this via the dockerfile. 
