@@ -2,20 +2,23 @@
 
 **TODO: Add description**
 
-## Installation
+## Running
+Run this via the dockerfile. 
+It needs 1 environment variables set to function properly:
+- `POSTGRES_URL`: A valid postgres URL in the [ecto format](https://hexdocs.pm/ecto/Ecto.Repo.html#module-urls)
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `freelytics` to your list of dependencies in `mix.exs`:
 
-```elixir
-def deps do
-  [
-    {:freelytics, "~> 0.1.0"}
-  ]
-end
-```
+### Migrating the database
+On first run you might want to migrate the database.
+To do this run the container with the command `/app/bin/freelytics migrate`.
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/freelytics](https://hexdocs.pm/freelytics).
+
+### Building the docker image
+
+To build the docker image, 1 environment variables are required:
+- `COOKIE`: A string, that will server as the cookie to identify the running Erlang VM
+- `ALLOWED_URL`: The URL from which get request should be permitted
+
+
+
 

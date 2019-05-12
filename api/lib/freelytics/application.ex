@@ -8,10 +8,13 @@ defmodule Freelytics.Application do
   def start(_type, _args) do
     # List all child processes to be supervised
     children = [
-      # Starts a worker by calling: Freelytics.Worker.start_link(arg)
-      # {Freelytics.Worker, arg}
       Freelytics.Repo,
-      Plug.Cowboy.child_spec(scheme: :http, plug: Freelytics.Router, options: [port: 4001])
+      Plug.Cowboy.child_spec(
+        scheme: :http,
+        plug: Freelytics.Router,
+        # TODO: This port should be configurable by the PORT environment variable
+        options: [port: 8080]
+      )
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

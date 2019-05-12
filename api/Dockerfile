@@ -22,8 +22,13 @@ COPY config ./
 RUN mix deps.get && mix deps.compile
 
 # build release
-ARG COOKIE
+arg COOKIE 
+arg ALLOWED_URL
+arg PORT
 ENV COOKIE=$COOKIE
+ENV ALLOWED_URL=$ALLOWED_URL
+ENV PORT=$PORT
+
 COPY . .
 RUN mix release --no-tar --verbose
 
@@ -38,7 +43,7 @@ USER nobody
 COPY --from=build /app/_build/prod/rel/freelytics ./
 
 ENV REPLACE_OS_VARS=true
-ENV HTTP_PORT=4000 BEAM_PORT=14000 ERL_EPMD_PORT=24000
-EXPOSE $HTTP_PORT $BEAM_PORT $ERL_EPMD_PORT
+ENV BEAM_PORT=14000 ERL_EPMD_PORT=24000
+EXPOSE $BEAM_PORT $ERL_EPMD_PORT
 
 ENTRYPOINT ["/app/bin/freelytics"]

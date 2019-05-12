@@ -30,3 +30,5 @@ use Mix.Config
 #     import_config "#{Mix.env()}.exs"
 
 config :freelytics, ecto_repos: [Freelytics.Repo]
+
+# config :freelytics, Freelytics.Repo, pool_size: 2
