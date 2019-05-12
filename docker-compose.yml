@@ -6,17 +6,22 @@ networks:
 
 services:
   analyze_api:
-    image: bmff/analyze-api
+    build: 
+      context: ./api
+      args:
+        COOKIE: test
+        ALLOWED_URL: "*"
     environment:
       - POSTGRES_URL=ecto://test:test@analyze_db:5432/test?sslmode=disable
       - ALLOWED_URL=https://freelytics.net
     ports:
-      - "8080:10920"
+      - "4000:8080"
     depends_on:
       - analyze_db
     networks:
       - analyze
     restart: always
+    command: "foreground"
   analyze_db:
     image: postgres
     environment:
@@ -27,7 +32,10 @@ services:
       - analyze
     restart: always
   analyze_frontend:
-    image: bmff/analyze-frontend
+    build: 
+      context: frontend
+      args:
+        apiurl: "http://localhost:4000"
     ports:
       - "80:80"
     restart: always

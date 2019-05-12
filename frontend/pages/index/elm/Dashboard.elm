@@ -14,8 +14,8 @@ import Json.Decode exposing (Decoder,decodeValue, field, string, list, map2, map
 decoder : Decoder Metric
 decoder =
   map2 Metric
-    (field "URL" string )
-    (field "TimesVisited" int)
+    (field "times_visited" int)
+    (field "url" string )
 
 dataDecoder: Decoder MetricCollection
 dataDecoder =
@@ -37,8 +37,8 @@ main =
 -- MODEL
 
 type alias Metric = {
-  url: String,
-  times_visited: Int
+  times_visited: Int,
+  url: String
  }
 
 
