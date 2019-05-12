@@ -15,7 +15,7 @@ services:
       - POSTGRES_URL=ecto://test:test@analyze_db:5432/test?sslmode=disable
       - ALLOWED_URL=https://freelytics.net
     ports:
-      - "4000:8080"
+      - "8080:8080"
     depends_on:
       - analyze_db
     networks:
