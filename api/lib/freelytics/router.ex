@@ -13,7 +13,7 @@ defmodule Freelytics.Router do
       {"Access-Control-Allow-Methods", "OPTIONS"}
     ]
 
-    conn.merge_resp_headers(conn, headers)
+    Plug.Conn.merge_resp_headers(conn, headers)
   end
 
   get "/get/:root" do
@@ -31,7 +31,7 @@ defmodule Freelytics.Router do
       {"Access-Control-Allow-Methods", "OPTIONS"}
     ]
 
-    conn.merge_resp_headers(conn, headers)
+    Plug.Conn.merge_resp_headers(conn, headers)
     send_resp(conn, 200, Jason.encode!(entries))
   end
 
@@ -42,7 +42,7 @@ defmodule Freelytics.Router do
       {"Access-Control-Allow-Headers", "Content-Type"}
     ]
 
-    conn.merge_resp_headers(conn, headers)
+    Plug.Conn.merge_resp_headers(conn, headers)
   end
 
   post "/save" do
@@ -80,7 +80,7 @@ defmodule Freelytics.Router do
           {"Access-Control-Allow-Headers", "Content-Type"}
         ]
 
-        conn.merge_resp_headers(conn, headers)
+        Plug.Conn.merge_resp_headers(conn, headers)
         send_resp(conn, 200, "")
 
       {:error, changeset} ->
