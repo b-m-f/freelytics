@@ -60,11 +60,12 @@ defmodule Freelytics.Router do
     end
 
     {root, url} = body
+    IO.inspect(url)
 
     # here we should just update directly in the database
     # without getting the value first and then counting up by 1
     result =
-      case Freelytics.Repo.get_by(Freelytics.Analytics, root: root) do
+      case Freelytics.Repo.get_by(Freelytics.Analytics, url: url) do
         # Post not found, we build one
         nil ->
           insert_analytics(%Freelytics.Analytics{root: root, url: url, times_visited: 1})
