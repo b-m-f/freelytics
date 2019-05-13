@@ -9,7 +9,6 @@
     "build": "NODE_ENV=production npm run build:global && NODE_ENV=production npm run build:sites",
     "build:watch": "find pages -type f | entr -r npm run build:dev",
     "build:dev": "npm run build:global && npm run build:sites",
-    "build:elm": "elm make --optimize",
     "build:global": "node-sass --include-path node_modules pages/global.scss dist/static/css/global.css",
     "build:sites": "npm run build:index && npm run build:generate-tracking-script",
     "build:index": "node compiler/index.js index",
