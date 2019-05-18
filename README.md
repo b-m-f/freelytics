@@ -9,6 +9,10 @@ Store this data inside a Database and then display it a later point via a Dashbo
 
 ![Architecture diagram](docs/assets/architecture.svg) 
 
+
+## What is tracked?
+- total visitors per URL (**be aware**: Parameters are stripped from URLs)
+
 ## Why write this?
 I host a blog myself and wanted to get some insights about how people are using it.
 All options that were available to me at the time required complex setup for their users, cost money or used techniques that were not respectful of data privacy and therefore our internet.
