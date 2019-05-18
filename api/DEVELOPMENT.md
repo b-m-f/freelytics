@@ -1,3 +1,4 @@
+# Development setup for the api
 run DB `docker run -e POSTGRES_PASSWORD="hello" -e POSTGRES_USER=test -p 5432:5432 postgres:alpine`
 migrate db `POSTGRES_URL=ecto://test:hello@localhost:5432/freelytics mix do ecto.drop, ecto.create, ecto.migrate`
 
