@@ -60,7 +60,6 @@ defmodule Freelytics.Router do
     end
 
     {root, url} = body
-    IO.inspect(url)
 
     # here we should just update directly in the database
     # without getting the value first and then counting up by 1
@@ -86,6 +85,7 @@ defmodule Freelytics.Router do
 
         conn = Plug.Conn.merge_resp_headers(conn, headers)
         send_resp(conn, 200, "")
+
 
       {:error, changeset} ->
         Logger.info("Update failed for #{inspect(changeset)}")

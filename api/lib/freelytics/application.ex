@@ -14,12 +14,13 @@ defmodule Freelytics.Application do
         plug: Freelytics.Router,
         # TODO: This port should be configurable by the PORT environment variable
         options: [port: 8080]
-      )
+      ),
+      {Freelytics.Registry, name: Freelytics.Registry}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options
     opts = [strategy: :one_for_one, name: Freelytics.Supervisor]
-    Supervisor.start_link(children, opts)
+    {:ok, pid} = Supervisor.start_link(children, opts)
   end
 end
