@@ -5,3 +5,6 @@ migrate db `POSTGRES_URL=ecto://test:hello@localhost:5432/freelytics mix do ecto
 connect to DB `env PGPASSWORD=hello psql -h localhost -p 5432 -U test`
 
 run iex `ALLOWED_URL="*" POSTGRES_URL=ecto://test:hello@localhost:5432/freelytics iex -S mix`
+
+
+Sending a POST to the API `curl -X POST -H "Content-Type: application/json"  --data '{"root": "test", "url": "test"}' localhost:8080/save`
