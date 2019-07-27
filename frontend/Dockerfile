@@ -2,7 +2,7 @@
 ############################
 # STEP 1 build frontend
 ############################
-FROM node:12-alpine AS builder
+FROM node:12-alpine
 
 
 # Install system dependencies
@@ -34,8 +34,10 @@ RUN npm run build
 # expose 5000 on container
 EXPOSE 80
 
+# set host to export
+ENV HOST=0.0.0.0
 # set app port
-ENV NUXT_PORT=80
+ENV PORT=80
 
 # start the app
 CMD [ "npm", "start" ]
