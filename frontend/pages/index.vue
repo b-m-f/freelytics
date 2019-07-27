@@ -30,7 +30,7 @@ export default {
   },
   methods: {
     fetchData() {
-      this.$store.commit('analytics/fetchData')
+      this.$store.dispatch('analytics/fetchData')
     }
   }
 }

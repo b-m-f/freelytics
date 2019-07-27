@@ -8,13 +8,18 @@ export const mutations = {
   updateUrl(state, url) {
     state.url = url
   },
-  fetchData(state) {
-    // fetch
-    const newData = {}
-    console.log('fetched')
-
-    state.data = newData
-    state.fetched = true
+  setData(state, data) {
     state.lastFetched = state.url
+    state.data = data
+    state.fetched = true
+  }
+}
+
+export const actions = {
+  async fetchData({ commit, state }) {
+    // fetch
+    const data = await this.$axios.$get(`get/${state.url}`)
+    console.log(data)
+    commit('setData', data)
   }
 }
