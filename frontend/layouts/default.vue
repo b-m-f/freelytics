@@ -1,7 +1,9 @@
 <template>
   <a-layout id="components-layout-custom-trigger" :has-sider="true" style="height: 100vh;">
     <a-layout-sider v-model="collapsed" width="300" :trigger="null" collapsible>
-      <div class="logo" />
+      <div id="logo">
+        <h1 class="logo-text">Freelytics</h1>
+      </div>
       <Navigation />
     </a-layout-sider>
     <a-layout>
@@ -51,5 +53,14 @@ export default {
   height: 32px;
   background: rgba(255, 255, 255, 0.2);
   margin: 16px;
+}
+
+#logo {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+.logo-text {
+  color: white;
 }
 </style>
