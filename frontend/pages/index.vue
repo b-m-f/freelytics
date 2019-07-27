@@ -1,22 +1,20 @@
 <template>
   <div class="container">
-    <Row :gutter="16" />
-    <Row :gutter="16">
-      <Col :span="9">
-        <Input enter-button default-value="Enter URL to get data" @search="fetchData" />
-      </Col>
-    </Row>
+    <a-row :gutter="16" />
+    <a-row :gutter="16">
+      <a-col :span="9">
+        <a-input-search enter-button placeholder="Enter URL to get data" @search="fetchData" />
+      </a-col>
+    </a-row>
 
     <div v-if="fetched">
       <h2>Analytics data for {{ lastFetched }}</h2>
-      <Table :data-source="data" :columns="columns" />
+      <a-table :data-source="data" :columns="columns" />
     </div>
   </div>
 </template>
 
 <script>
-import { Table, Row, Col, Input } from 'ant-design-vue'
-
 const columns = [
   {
     title: 'Url',
@@ -31,12 +29,6 @@ const columns = [
 ]
 
 export default {
-  components: {
-    Table,
-    Row,
-    Col,
-    Input: Input.Search
-  },
   computed: {
     columns() {
       return columns
