@@ -1,7 +1,8 @@
 export const state = () => ({
   url: '',
   fetched: false,
-  lastFetched: ''
+  lastFetched: '',
+  data: []
 })
 
 export const mutations = {
@@ -18,8 +19,7 @@ export const mutations = {
 export const actions = {
   async fetchData({ commit, state }) {
     // fetch
-    const data = await this.$axios.$get(`get/${state.url}`)
-    console.log(data)
-    commit('setData', data)
+    const reponse = await this.$axios.$get(`get/${state.url}`)
+    commit('setData', reponse.data)
   }
 }

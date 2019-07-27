@@ -5,14 +5,33 @@
 
     <div v-if="fetched">
       <h2>Analytics data for {{ lastFetched }}</h2>
+      <Table :dataSource="data" :columns="columns" />
     </div>
   </div>
 </template>
 
 <script>
+import { Table } from 'ant-design-vue'
+
+const columns = [
+  {
+    title: 'Url',
+    dataIndex: 'url',
+    key: 'url'
+  },
+  {
+    title: 'Visits',
+    dataIndex: 'times_visited',
+    key: 'visits'
+  }
+]
+
 export default {
-  components: {},
+  components: { Table },
   computed: {
+    columns() {
+      return columns
+    },
     fetched() {
       return this.$store.state.analytics.fetched
     },
@@ -26,6 +45,9 @@ export default {
       get() {
         return this.$store.state.analytics.url
       }
+    },
+    data() {
+      return this.$store.state.analytics.data
     }
   },
   methods: {
