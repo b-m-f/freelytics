@@ -1,5 +1,4 @@
 export const state = () => ({
-  url: '',
   fetched: false,
   lastFetched: '',
   data: []
@@ -9,7 +8,7 @@ export const mutations = {
   updateUrl(state, url) {
     state.url = url
   },
-  setData(state, data) {
+  setData(state, { url, data }) {
     state.lastFetched = state.url
     state.data = data
     state.fetched = true
@@ -17,9 +16,9 @@ export const mutations = {
 }
 
 export const actions = {
-  async fetchData({ commit, state }) {
+  async fetchData({ commit }, { url }) {
     // fetch
-    const reponse = await this.$axios.$get(`get/${state.url}`)
-    commit('setData', reponse.data)
+    const reponse = await this.$axios.$get(`get/${url}`)
+    commit('setData', { url, data: reponse.data })
   }
 }

@@ -1,7 +1,11 @@
 <template>
   <div class="container">
-    <input v-model="url" type="text" />
-    <button @click="fetchData">Fetch data for {{ url }}</button>
+    <Row :gutter="16" />
+    <Row :gutter="16">
+      <Col :span="9">
+        <Input enter-button default-value="Enter URL to get data" @search="fetchData" />
+      </Col>
+    </Row>
 
     <div v-if="fetched">
       <h2>Analytics data for {{ lastFetched }}</h2>
@@ -11,7 +15,7 @@
 </template>
 
 <script>
-import { Table } from 'ant-design-vue'
+import { Table, Row, Col, Input } from 'ant-design-vue'
 
 const columns = [
   {
@@ -27,7 +31,12 @@ const columns = [
 ]
 
 export default {
-  components: { Table },
+  components: {
+    Table,
+    Row,
+    Col,
+    Input: Input.Search
+  },
   computed: {
     columns() {
       return columns
@@ -38,14 +47,6 @@ export default {
     lastFetched() {
       return this.$store.state.analytics.lastFetched
     },
-    url: {
-      set(url) {
-        this.$store.commit('analytics/updateUrl', url)
-      },
-      get() {
-        return this.$store.state.analytics.url
-      }
-    },
     data() {
       return this.$store.state.analytics.data.map((val, idx) => {
         val.key = idx
@@ -54,8 +55,8 @@ export default {
     }
   },
   methods: {
-    fetchData() {
-      this.$store.dispatch('analytics/fetchData')
+    fetchData(url) {
+      this.$store.dispatch('analytics/fetchData', { url })
     }
   }
 }
