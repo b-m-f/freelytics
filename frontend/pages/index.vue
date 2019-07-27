@@ -5,7 +5,7 @@
 
     <div v-if="fetched">
       <h2>Analytics data for {{ lastFetched }}</h2>
-      <Table :dataSource="data" :columns="columns" />
+      <Table :data-source="data" :columns="columns" />
     </div>
   </div>
 </template>
@@ -47,7 +47,10 @@ export default {
       }
     },
     data() {
-      return this.$store.state.analytics.data
+      return this.$store.state.analytics.data.map((val, idx) => {
+        val.key = idx
+        return val
+      })
     }
   },
   methods: {
