@@ -9,3 +9,6 @@
 
 
 - For now to populate -> send a POST to the API `curl -X POST -H "Content-Type: application/json"  --data '{"root": "test", "url": "test"}' localhost:8080/save`
+
+## Reloading changes
+To hot reload changes, type `recompile` in the iex console and hit enter
