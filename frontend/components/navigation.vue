@@ -2,21 +2,29 @@
   <a-menu theme="dark" mode="inline" :default-selected-keys="['1']">
     <a-menu-item key="1">
       <nuxt-link to="/">
-        <a-icon type="user" />
         <span>Dashboard</span>
       </nuxt-link>
     </a-menu-item>
     <a-menu-item key="2">
       <nuxt-link to="/generate-tracking-script">
-        <a-icon type="video-camera" />
         <span>Start tracking your own website</span>
       </nuxt-link>
     </a-menu-item>
     <a-menu-item key="3">
-      <a-icon type="upload" />
-      <span>nav 3</span>
+      <a href="https://maximilianehlers.com/using-freelytics-on-ghost/">
+        <span>Using freelytics with GhostCMS</span>
+      </a>
+    </a-menu-item>
+    <a-menu-item key="4">
+      <a href="https://maximilianehlers.com/using-freelytics-on-wordpress/">
+        <span>Using freelytics with Wordpress</span>
+      </a>
     </a-menu-item>
   </a-menu>
 </template>
 <script></script>
-<style></style>
+<style>
+span {
+  font-size: 1.1rem;
+}
+</style>
