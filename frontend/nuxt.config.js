@@ -23,7 +23,7 @@ module.exports = {
   /*
    ** Global CSS
    */
-  css: ['ant-design-vue/dist/antd.css'],
+  css: ['ant-design-vue/dist/antd.css', '~/assets/tailwind.css'],
   /*
    ** Plugins to load before mounting the App
    */
@@ -53,6 +53,12 @@ module.exports = {
    ** Build configuration
    */
   build: {
+    postcss: {
+      plugins: [
+        require('tailwindcss')('./tailwind.config.js'),
+        require('autoprefixer')
+      ]
+    },
     /*
      ** You can extend webpack config here
      */

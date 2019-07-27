@@ -1,25 +1,13 @@
 <template>
-  <a-layout id="components-layout-custom-trigger" :has-sider="true" style="height: 100vh;">
-    <a-layout-sider v-model="collapsed" width="300" :trigger="null" collapsible>
-      <div id="logo">
-        <h1 class="logo-text">Freelytics</h1>
-      </div>
+  <a-layout id="components-layout-custom-trigger" style="height: 100vh;">
+    <div style="background: #fff; padding: 0">
       <Navigation />
-    </a-layout-sider>
-    <a-layout>
-      <a-layout-header style="background: #fff; padding: 0">
-        <a-icon
-          class="trigger"
-          :type="collapsed ? 'menu-unfold' : 'menu-fold'"
-          @click="() => (collapsed = !collapsed)"
-        />
-      </a-layout-header>
-      <a-layout-content
-        :style="{ margin: '24px 16px', padding: '24px', background: '#fff', minHeight: '280px' }"
-      >
-        <nuxt />
-      </a-layout-content>
-    </a-layout>
+    </div>
+    <a-layout-content
+      :style="{ margin: '24px 16px', padding: '24px', background: '#fff', minHeight: '280px' }"
+    >
+      <nuxt />
+    </a-layout-content>
   </a-layout>
 </template>
 
