@@ -1,30 +1,34 @@
 
 <template>
   <div>
-    <a-row :type="flex" :justify="space-between">
-      <a-col :span="18">
-        <h2>Add the following script into your website to get started:</h2>
-        <p>For more information see the links in the sidebar</p>
-      </a-col>
-      <a-col :span="4">
-        <a-button
-          class="copy-to-clipboard-button"
-          data-clipboard-target="#script-area"
-        >Cut to clipboard</a-button>
-      </a-col>
-    </a-row>
-    <a-card title="Script">
-      <pre>
+    <div class="flex mb-8">
+      <div>
+        <h2 class="text-3xl">Add the following script into your website to get started:</h2>
+        <p class="text-lg">For more information see the links in the sidebar</p>
+      </div>
+      <button
+        class="copy-to-clipboard-button p-2 border ml-32 text-3xl border-black border-4 rounded-sm"
+        data-clipboard-target="#script-area"
+      >Cut to clipboard</button>
+    </div>
+    <div>
+      <div class="border">
+        <h3 class="text-2xl p-6">Script</h3>
+      </div>
+      <div class="border">
+        <pre class="m-6 p-4 bg-gray-100 border border-black border-4">
          <code id="script-area">
             {{script}}
          </code>
        </pre>
-    </a-card>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 import Clipboard from 'clipboard'
+
 if (process.browser) {
   new Clipboard('.copy-to-clipboard-button') // eslint-disable-line no-new
 }

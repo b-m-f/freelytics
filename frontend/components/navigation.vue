@@ -1,5 +1,5 @@
 <template>
-  <nav class="flex items-center justify-between flex-wrap p-6 bg-black">
+  <nav class="flex items-center justify-between flex-wrap p-6">
     <div class="flex items-center flex-shrink-0 text-white mr-6">
       <span class="font-semibold text-xl tracking-tight">Freelytics</span>
     </div>
@@ -44,9 +44,9 @@
     </div>
   </nav>
 </template>
-<script></script>
-<style>
-span {
-  font-size: 1.1rem;
-}
-</style>
+
+<script>
+export default {}
+</script>
+
+<style></style>
