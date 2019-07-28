@@ -9,7 +9,7 @@
       <button
         class="copy-to-clipboard-button p-2 border ml-32 text-3xl border-black border-4 rounded-sm"
         data-clipboard-target="#script-area"
-      >Cut to clipboard</button>
+      >Copy to clipboard</button>
     </div>
     <div>
       <div class="border">
