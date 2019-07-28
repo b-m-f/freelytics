@@ -10,7 +10,7 @@
         <a-button
           class="copy-to-clipboard-button"
           data-clipboard-target="#script-area"
-        >Cut to clipboard</a-button>
+        >Copy to clipboard</a-button>
       </a-col>
     </a-row>
     <a-card title="Script">
