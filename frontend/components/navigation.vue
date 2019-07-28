@@ -30,14 +30,16 @@
         <a
           class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4"
           href="https://maximilianehlers.com/using-freelytics-on-ghost/"
+          target="_blank"
         >
-          <span>Using freelytics with GhostCMS</span>
+          <span>⧉ Using freelytics with GhostCMS</span>
         </a>
         <a
           class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4"
           href="https://maximilianehlers.com/using-freelytics-on-wordpress/"
+          target="_blank"
         >
-          <span>Using freelytics with Wordpress</span>
+          <span>⧉ Using freelytics with Wordpress</span>
         </a>
       </div>
       <div></div>
