@@ -1,66 +1,22 @@
 <template>
-  <a-layout id="components-layout-custom-trigger" :has-sider="true" style="height: 100vh;">
-    <a-layout-sider v-model="collapsed" width="300" :trigger="null" collapsible>
-      <div id="logo">
-        <h1 class="logo-text">Freelytics</h1>
-      </div>
+  <div class="bg-gray-200 h-screen">
+    <header class="bg-black">
       <Navigation />
-    </a-layout-sider>
-    <a-layout>
-      <a-layout-header style="background: #fff; padding: 0">
-        <a-icon
-          class="trigger"
-          :type="collapsed ? 'menu-unfold' : 'menu-fold'"
-          @click="() => (collapsed = !collapsed)"
-        />
-      </a-layout-header>
-      <a-layout-content
-        :style="{ margin: '24px 16px', padding: '24px', background: '#fff', minHeight: '280px' }"
-      >
-        <nuxt />
-      </a-layout-content>
-    </a-layout>
-  </a-layout>
+    </header>
+    <main class="mt-6 mx-6 p-6 bg-white">
+      <nuxt />
+    </main>
+  </div>
 </template>
 
 <script>
 import Navigation from '~/components/navigation'
+
 export default {
   components: {
     Navigation
-  },
-  data() {
-    return {
-      collapsed: false
-    }
   }
 }
 </script>
 <style>
-#components-layout-custom-trigger .trigger {
-  font-size: 18px;
-  line-height: 64px;
-  padding: 0 24px;
-  cursor: pointer;
-  transition: color 0.3s;
-}
-
-#components-layout-custom-trigger .trigger:hover {
-  color: #1890ff;
-}
-
-#components-layout-custom-trigger .logo {
-  height: 32px;
-  background: rgba(255, 255, 255, 0.2);
-  margin: 16px;
-}
-
-#logo {
-  display: flex;
-  justify-content: center;
-  align-content: center;
-}
-.logo-text {
-  color: white;
-}
 </style>
