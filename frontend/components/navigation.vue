@@ -41,6 +41,13 @@
         >
           <span>⧉ Using freelytics with Wordpress</span>
         </a>
+        <a
+          class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4"
+          href="https://github.com/b-m-f/freelytics/issues"
+          target="_blank"
+        >
+          <span>⧉ Improve Freelytics</span>
+        </a>
       </div>
       <div></div>
     </div>
