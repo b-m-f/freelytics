@@ -20,24 +20,7 @@
     </div>
     <div v-if="fetched">
       <h2 class="text-3xl">Analytics data for {{ lastFetched }}</h2>
-      <Table :values="data" class="w-full">
-        <thead class>
-          <tr>
-            <th scope="col" class="text-xl" style="text-align: left; width: 10rem;">
-              <SortLink name="page">Page</SortLink>
-            </th>
-            <th scope="col" class="text-xl" style="text-align: left; width: 10rem;">
-              <SortLink name="visits">Visits</SortLink>
-            </th>
-          </tr>
-        </thead>
-        <tbody slot="body" slot-scope="sort">
-          <tr v-for="value in sort.values" :key="value.times_visited" class="border">
-            <td class="border-r pl-6">{{ value.url}}</td>
-            <td class="pl-6">{{ value.times_visited }}</td>
-          </tr>
-        </tbody>
-      </Table>
+      <Table :values="data" :columns="columns" :sort="'visits'" class="w-full"></Table>
     </div>
   </div>
 </template>
@@ -45,24 +28,14 @@
 <script>
 import Table from '~/components/table'
 
-const columns = [
-  {
-    title: 'Url',
-    dataIndex: 'url',
-    key: 'url'
-  },
-  {
-    title: 'Visits',
-    dataIndex: 'times_visited',
-    key: 'visits'
-  }
-]
-
 export default {
   components: { Table },
   computed: {
     columns() {
-      return columns
+      return [
+        { key: 'url', display: 'Page' },
+        { key: 'times_visited', display: 'Visits' }
+      ]
     },
     fetched() {
       return this.$store.state.analytics.fetched

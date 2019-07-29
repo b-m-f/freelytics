@@ -8,7 +8,7 @@ export const mutations = {
   updateUrl(state, url) {
     state.url = url
   },
-  setData(state, { url, data }) {
+  setData(state, { data }) {
     state.lastFetched = state.url
     state.data = data
     state.fetched = true
