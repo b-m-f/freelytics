@@ -20,34 +20,22 @@
     </div>
     <div v-if="fetched">
       <h2 class="text-3xl">Analytics data for {{ lastFetched }}</h2>
-      <Table :values="data" :columns="columns" :sort="'visits'" class="w-full"></Table>
+      <AnalyticsTable />
     </div>
   </div>
 </template>
 
 <script>
-import Table from '~/components/table'
+import AnalyticsTable from '~/components/AnalyticsTable'
 
 export default {
-  components: { Table },
+  components: { AnalyticsTable },
   computed: {
-    columns() {
-      return [
-        { key: 'url', display: 'Page' },
-        { key: 'times_visited', display: 'Visits' }
-      ]
-    },
     fetched() {
       return this.$store.state.analytics.fetched
     },
     lastFetched() {
       return this.$store.state.analytics.lastFetched
-    },
-    data() {
-      return this.$store.state.analytics.data.map((val, idx) => {
-        val.key = idx
-        return val
-      })
     }
   },
   methods: {
