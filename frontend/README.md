@@ -1,6 +1,9 @@
 # freelytics-frontend
 
 > Frontend for freelytics.com
+## User libraries
+- [Vuetify](https://vuetifyjs.com)
+- [tailwindcss](https://tailwindcss.com/)
 
 ## Build Setup
 
