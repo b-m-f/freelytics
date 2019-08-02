@@ -31,7 +31,7 @@ RUN npm run build
 # STEP 2 Run the server
 ############################
 
-# expose 5000 on container
+# expose 80 on container
 EXPOSE 80
 
 # set host to export
