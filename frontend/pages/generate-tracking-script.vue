@@ -1,29 +1,15 @@
 
 <template>
-  <div>
-    <div class="flex mb-8">
-      <div>
-        <h2 class="text-3xl">Add the following script into your website to get started:</h2>
-        <p class="text-lg">For more information see the links in the sidebar</p>
-      </div>
-      <button
-        class="copy-to-clipboard-button p-2 border ml-32 text-3xl border-black border-4 rounded-sm"
-        data-clipboard-target="#script-area"
-      >Copy to clipboard</button>
-    </div>
-    <div>
-      <div class="border">
-        <h3 class="text-2xl p-6">Script</h3>
-      </div>
-      <div class="border">
-        <pre class="m-6 p-4 bg-gray-100 border border-black border-4">
+  <v-card class="p-4">
+    <h2 class="text-3xl">Add the following script into your website to get started:</h2>
+    <p class="text-lg">For more information see the links in the sidebar</p>
+    <v-btn class="copy-to-clipboard-button" data-clipboard-target="#script-area">Copy to clipboard</v-btn>
+    <pre class="m-6 p-4 bg-gray-100 border border-black border-4">
          <code id="script-area">
             {{script}}
          </code>
        </pre>
-      </div>
-    </div>
-  </div>
+  </v-card>
 </template>
 
 <script>

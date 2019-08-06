@@ -1,28 +1,18 @@
 <template>
-  <div class="container flex flex-col">
-    <div class="flex justify-center mb-8">
-      <form class="w-full max-w-sm" @submit.prevent="fetchData">
-        <div class="flex items-center border-b border-b-2 border-teal-500 py-2">
-          <input
-            ref="searchInput"
-            placeholder="Enter URL to get data for"
-            class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
-            type="text"
-            aria-label="URL to get data for"
-          />
-          <button
-            class="flex-shrink-0 bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded"
-            type="button"
-            @click.stop.prevent="fetchData"
-          >Get Data</button>
-        </div>
+  <v-container fluid>
+    <v-layout row>
+      <form class="w-full flex align-center" @submit.prevent="fetchData">
+        <v-flex>
+          <v-text-field v-model="url" label="What is your domain name?" required></v-text-field>
+          <v-btn class="mr-4" @click.stop.prevent="fetchData">Get Data</v-btn>
+        </v-flex>
       </form>
-    </div>
+    </v-layout>
     <div v-if="fetched">
       <h2 class="text-3xl">Analytics data for {{ lastFetched }}</h2>
       <AnalyticsTable />
     </div>
-  </div>
+  </v-container>
 </template>
 
 <script>
@@ -30,6 +20,11 @@ import AnalyticsTable from '~/components/AnalyticsTable'
 
 export default {
   components: { AnalyticsTable },
+  data(){
+    return{
+      url:""
+    }
+  },
   computed: {
     fetched() {
       return this.$store.state.analytics.fetched
@@ -40,9 +35,11 @@ export default {
   },
   methods: {
     fetchData() {
-      this.$store.dispatch('analytics/fetchData', {
-        url: this.$refs.searchInput.value
-      })
+      if (this.url) {
+        this.$store.dispatch('analytics/fetchData', {
+          url: this.url
+        })
+      }
     }
   }
 }
