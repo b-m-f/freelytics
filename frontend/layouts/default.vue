@@ -66,7 +66,7 @@
     </v-content>
     <v-footer color="indigo" app>
       <span class="white--text">
-        <a href="https://maximilianehlers.com/">Maximilian Ehlers</a>&copy; 2019
+        <a href="https://maximilianehlers.com/">Maximilian Ehlers</a> &copy; 2019
       </span>
     </v-footer>
   </v-app>
