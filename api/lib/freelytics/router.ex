@@ -10,7 +10,8 @@ defmodule Freelytics.Router do
   options "/get/:root" do
     headers = [
       {"Access-Control-Allow-Origin", System.get_env("ALLOWED_URL")},
-      {"Access-Control-Allow-Methods", "OPTIONS"}
+      {"Access-Control-Allow-Methods", "OPTIONS"},
+      {"Content-Type", "application/json"}
     ]
 
     conn = Plug.Conn.merge_resp_headers(conn, headers)
@@ -29,7 +30,8 @@ defmodule Freelytics.Router do
 
     headers = [
       {"Access-Control-Allow-Origin", System.get_env("ALLOWED_URL")},
-      {"Access-Control-Allow-Methods", "OPTIONS"}
+      {"Access-Control-Allow-Methods", "OPTIONS"},
+      {"Content-Type", "application/json"}
     ]
 
     conn = Plug.Conn.merge_resp_headers(conn, headers)

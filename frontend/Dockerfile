@@ -2,44 +2,42 @@
 ############################
 # STEP 1 build frontend
 ############################
-FROM node:11-alpine AS builder
+FROM node:12-alpine
 
 
 # Install system dependencies
-RUN apk update && apk add --no-cache ca-certificates tzdata gcc
+RUN apk update && apk add --no-cache ca-certificates tzdata
 
 # Create user to run the app
-RUN adduser -D -g '' nginx
+RUN adduser -D -g '' appuser 
 
-arg apiurl
-
-ENV API_URL $apiurl
+## optional, to use to change the backend API
+## currently done in package.json
+# arg apiurl
+# ENV API_URL $apiurl
 
 
 WORKDIR /app
 
-COPY package.json elm.json /app/
+COPY . .
 
 # Fetch dependencies.
 RUN npm install
 
-
-COPY pages /app/pages/
-COPY compiler /app/compiler/
-
 # compile app
 RUN npm run build
 
-
 ############################
-# STEP 2 build a small image
+# STEP 2 Run the server
 ############################
 
-FROM nginx:alpine
+# expose 80 on container
+EXPOSE 80
 
-COPY --from=builder /etc/passwd /etc/passwd
-COPY --from=builder /usr/share/zoneinfo /usr/share/zoneinfo
-COPY --from=builder /app/dist/ /usr/share/nginx/html/
+# set host to export
+ENV HOST=0.0.0.0
+# set app port
+ENV PORT=80
 
-COPY docker-config/default.conf /etc/nginx/conf.d/default.conf
-
+# start the app
+CMD [ "npm", "start" ]

@@ -1,33 +1,16 @@
 module.exports = {
-    "env": {
-        "browser": true,
-        "commonjs": true,
-        "es6": true
-    },
-    "extends": "eslint:recommended",
-    "globals": {
-        "Atomics": "readonly",
-        "SharedArrayBuffer": "readonly"
-    },
-    "parserOptions": {
-        "ecmaVersion": 2018
-    },
-    "rules": {
-        "indent": [
-            "error",
-            4
-        ],
-        "linebreak-style": [
-            "error",
-            "unix"
-        ],
-        "quotes": [
-            "error",
-            "double"
-        ],
-        "semi": [
-            "error",
-            "always"
-        ]
-    }
-};
+  root: true,
+  env: {
+    browser: true,
+    node: true
+  },
+  parserOptions: {
+    parser: 'babel-eslint'
+  },
+  extends: ['@nuxtjs', 'prettier', 'prettier/vue', 'plugin:nuxt/recommended'],
+  plugins: ['prettier'],
+  // add your custom rules here
+  rules: {
+    'nuxt/no-cjs-in-config': 'off'
+  }
+}
