@@ -1,5 +1,9 @@
 # Freelytics
 
+## DEPRECATED
+The project has been taken offline from the public internet and will no longer be maintained on github.
+The code will stay here to give a reference on setting up a containerized elixir backend.
+
 **Freelytics provides free and privacy respecting analytics for your blog or small website, for FREE!**
 
 The idea behind the architecture is simple.
